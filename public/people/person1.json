@@ -1,0 +1,220 @@
+{
+    "name": "Vladimir Tivanski",
+    "userID": 1,
+    "zipcode": 15056,
+    "act": 35,
+    "years": [
+        {
+            "year": 2018,
+            "classes": [
+                {
+                    "className": "Spanish III",
+                    "honors": true,
+                    "ap": false,
+                    "category": "language",
+                    "teacher": "Molly Zywiec",
+                    "grade": 100
+                },
+                {
+                    "className": "Calculus BC",
+                    "honors": false,
+                    "ap": true,
+                    "category": "math",
+                    "teacher": "James Kirpes",
+                    "grade": 100
+                },
+                {
+                    "className": "Computer Integrated Manufacturing",
+                    "honors": false,
+                    "ap": false,
+                    "category": "pltw",
+                    "teacher": "Keith Kraeplin",
+                    "grade": 93.8
+                },
+                {
+                    "className": "Chemistry",
+                    "honors": true,
+                    "ap": false,
+                    "category": "science",
+                    "teacher": "Carolyn Walling",
+                    "grade": 81.2
+                },
+                {
+                    "className": "English 10",
+                    "honors": false,
+                    "ap": false,
+                    "category": "english",
+                    "teacher": "Ann Rocarek",
+                    "grade": 68.9
+                },
+                {
+                    "className": "European History",
+                    "honors": false,
+                    "ap": true,
+                    "category": "socialStudies",
+                    "teacher": "Dominic Justin Iannone",
+                    "grade": 74.2
+                }
+            ]
+        },
+        {
+            "year": 2019,
+            "classes": [
+                {
+                    "className": "Spanish III",
+                    "honors": true,
+                    "ap": false,
+                    "category": "language",
+                    "teacher": "Molly Zywiec",
+                    "grade": 88.4
+                },
+                {
+                    "className": "Calculus BC",
+                    "honors": false,
+                    "ap": true,
+                    "category": "math",
+                    "teacher": "James Kirpes",
+                    "grade": 73.6
+                },
+                {
+                    "className": "Computer Integrated Manufacturing",
+                    "honors": false,
+                    "ap": false,
+                    "category": "pltw",
+                    "teacher": "Keith Kraeplin",
+                    "grade": 93.8
+                },
+                {
+                    "className": "Chemistry",
+                    "honors": true,
+                    "ap": false,
+                    "category": "science",
+                    "teacher": "Carolyn Walling",
+                    "grade": 81.2
+                },
+                {
+                    "className": "English 10",
+                    "honors": false,
+                    "ap": false,
+                    "category": "english",
+                    "teacher": "Ann Rocarek",
+                    "grade": 68.9
+                },
+                {
+                    "className": "European History",
+                    "honors": false,
+                    "ap": true,
+                    "category": "socialStudies",
+                    "teacher": "Dominic Justin Iannone",
+                    "grade": 74.2
+                }
+            ]
+        },
+        {
+            "year": 2020,
+            "classes": [
+                {
+                    "className": "Spanish III",
+                    "honors": true,
+                    "ap": false,
+                    "category": "language",
+                    "teacher": "Molly Zywiec",
+                    "grade": 93.4
+                },
+                {
+                    "className": "Calculus BC",
+                    "honors": false,
+                    "ap": true,
+                    "category": "math",
+                    "teacher": "James Kirpes",
+                    "grade": 85.6
+                },
+                {
+                    "className": "Computer Integrated Manufacturing",
+                    "honors": false,
+                    "ap": false,
+                    "category": "pltw",
+                    "teacher": "Keith Kraeplin",
+                    "grade": 94.6
+                },
+                {
+                    "className": "Chemistry",
+                    "honors": true,
+                    "ap": false,
+                    "category": "science",
+                    "teacher": "Carolyn Walling",
+                    "grade": 93.4
+                },
+                {
+                    "className": "English 10",
+                    "honors": false,
+                    "ap": false,
+                    "category": "english",
+                    "teacher": "Ann Rocarek",
+                    "grade": 88.9
+                },
+                {
+                    "className": "European History",
+                    "honors": false,
+                    "ap": true,
+                    "category": "socialStudies",
+                    "teacher": "Dominic Justin Iannone",
+                    "grade": 89.5
+                }
+            ]
+        },
+        {
+            "year": 2021,
+            "classes": [
+                {
+                    "className": "Spanish III",
+                    "honors": true,
+                    "ap": false,
+                    "category": "language",
+                    "teacher": "Molly Zywiec",
+                    "grade": 94.5
+                },
+                {
+                    "className": "Calculus BC",
+                    "honors": false,
+                    "ap": true,
+                    "category": "math",
+                    "teacher": "James Kirpes",
+                    "grade": 91.2
+                },
+                {
+                    "className": "Computer Integrated Manufacturing",
+                    "honors": false,
+                    "ap": false,
+                    "category": "pltw",
+                    "teacher": "Keith Kraeplin",
+                    "grade": 93.5
+                },
+                {
+                    "className": "Chemistry",
+                    "honors": true,
+                    "ap": false,
+                    "category": "science",
+                    "teacher": "Carolyn Walling",
+                    "grade": 100.0
+                },
+                {
+                    "className": "English 10",
+                    "honors": false,
+                    "ap": false,
+                    "category": "english",
+                    "teacher": "Ann Rocarek",
+                    "grade": 93.9
+                },
+                {
+                    "className": "European History",
+                    "honors": false,
+                    "ap": true,
+                    "category": "socialStudies",
+                    "teacher": "Dominic Justin Iannone",
+                    "grade": 94.7
+                }
+            ]
+        }
+    ]
+}

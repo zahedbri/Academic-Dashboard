@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Academic Dashbaord</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="icon" type="image/png" href="bookIcon.png">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Academic Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="gpa.html">GPA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="grades.html">Grades</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="colleges.html">Colleges <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <table class="table table-light" style="width: 80%; margin-left: 10%; margin-top: 5%">
+    <thead class="thead-light">
+        <tr class="d-flex">
+            <th class="col-5" scope="col">College</th>
+            <th class="col-1" scope="col">ACT</th>
+            <th class="col-6" scope="col">Location</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+    </table>
+
+    <script>
+        
+        function zipCodeToState(zip, callback) {
+            $.ajax({
+                method: 'GET',
+                url: `http://ziptasticapi.com/${zip}`,
+                timeout: 8000
+            }).done((data, statusText, xhr) => {
+                callback(JSON.parse(xhr.responseText).state.toLowerCase());
+            });
+            // request(`http://ziptasticapi.com/${zip}`, (err, res, body) => {
+            //     if (err || res.statusCode!==200) {
+            //         return console.error(chalk.red('Error sending zip code request'));
+            //     }
+            //     console.log(chalk.blue(`Found that the zip code ${zip} is in ${JSON.parse(body).state}`));
+            //     callback(JSON.parse(body).state.toLowerCase());
+            // });
+        }
+
+        function getColleges(state, colleges, page, callback) {
+            $.ajax({
+                method: 'GET',
+                url: `https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=R71bocEFTjdewgncfZEvkiK9ICIJ8AqOyjuDBdST&school.state=${state.toLowerCase()}&_per_page=100&_fields=school.name,school.city,school.school_url,2016.admissions.act_scores.midpoint.cumulative&_page=${page}`,
+                timeout: 8000
+            }).done((data, statusText, xhr) => {
+                const json = JSON.parse(xhr.responseText);
+                console.log(`Fetched page ${page} of colleges in ${state.toUpperCase()}`);
+                if (!json.results[0]) {
+                    let returnColleges = [];
+                    for (i in colleges) {
+                        let college = colleges[i];
+                        if (college['2016.admissions.act_scores.midpoint.cumulative'] !== null) {
+                            returnColleges.push(college);
+                        }
+                    }
+                    callback(returnColleges);
+                } else {
+                    getColleges(state, colleges.concat(json.results), page + 1, callback);
+                }
+            });
+            // request(`https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=R71bocEFTjdewgncfZEvkiK9ICIJ8AqOyjuDBdST&school.state=${state.toLowerCase()}&_per_page=100&_fields=school.name,school.city,school.school_url,2016.admissions.act_scores.midpoint.cumulative&_page=${page}`,
+            // (err, res, body) => {
+            //     if (err || res.statusCode !== 200) {
+            //         return console.error(chalk.red('Error fetching college information'));
+            //     }
+            //     const json = JSON.parse(body);
+            //     console.log(`Fetched page ${page} of colleges in ${state.toUpperCase()}`);
+            //     if (!json.results[0]) {
+            //         let returnColleges = [];
+            //         for (i in colleges) {
+            //             let college = colleges[i];
+            //             if (college['2016.admissions.act_scores.midpoint.cumulative'] !== null) {
+            //                 returnColleges.push(college);
+            //             }
+            //         }
+            //         callback(returnColleges);
+            //     } else {
+            //         getColleges(state, colleges.concat(json.results), page + 1, callback);
+            //     }
+            // });
+        }
+        $.ajax({
+        method: 'GET',
+        url: `./public/people/person1.json`,
+        timeout: 8000
+        })
+        .done((data, statusText, xhr) => {
+            let json = JSON.parse(xhr.responseText);
+            let act = json.act;
+            zipCodeToState(json.zipcode, state => {
+            getColleges(state, [], 0, colleges => {
+                console.log(`The colleges in ${state.toUpperCase()} are:`);
+                let tbody = document.getElementById('tbody');
+                for (college of colleges) {
+                    if (Math.abs(act - college['2016.admissions.act_scores.midpoint.cumulative']) <= 5) {
+                        console.log(college);
+                        let url = college['school.school_url'];
+                        if (!url.includes('http')) {
+                            url = `http://${college['school.school_url']}`;
+                        }
+                        tbody.innerHTML += `<tr class="d-flex"><td class="col-5"><a href="${url}" target="_blank">${college['school.name']}</a></td><td class="col-1">${college['2016.admissions.act_scores.midpoint.cumulative']}</td><td class="col-6">${college['school.city'] + ', ' + state.toUpperCase()}</td></tr>`;
+                    }
+                }
+            });
+        });
+        })
+        .fail(xhr => {
+            console.error(xhr.responseJSON.error);
+        });
+    </script>
+</body>
+</html>
